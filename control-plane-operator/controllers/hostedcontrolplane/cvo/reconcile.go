@@ -86,6 +86,7 @@ var (
 		"0000_50_cluster-image-registry-operator_07-operator-ibm-cloud-managed.yaml",
 		"0000_50_cluster-image-registry-operator_07-operator-service.yaml",
 		"0000_90_cluster-image-registry-operator_02_operator-servicemonitor.yaml",
+		"0000_50_olm_06-psm-operator.servicemonitor.yaml",
 		"0000_50_cluster-storage-operator_10_deployment-ibm-cloud-managed.yaml",
 
 		// TODO: Remove these when cluster profiles annotations are fixed
