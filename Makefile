@@ -19,7 +19,7 @@ GENAPIDOCS := $(abspath $(TOOLS_BIN_DIR)/gen-crd-api-reference-docs)
 PROMTOOL=$(abspath $(TOOLS_BIN_DIR)/promtool)
 
 GO_GCFLAGS ?= -gcflags=all='-N -l'
-GO=GO111MODULE=on go
+GO=GO111MODULE=on GOFLAGS=-mod=vendor go
 GO_BUILD_RECIPE=CGO_ENABLED=1 $(GO) build $(GO_GCFLAGS)
 GO_E2E_RECIPE=CGO_ENABLED=1 $(GO) test $(GO_GCFLAGS) -tags e2e -c
 
@@ -71,10 +71,12 @@ $(GENAPIDOCS): $(TOOLS_DIR)/go.mod
 # Build hypershift-operator binary
 .PHONY: hypershift-operator
 hypershift-operator:
+	GOWORK=off
 	$(GO_BUILD_RECIPE) -o $(OUT_DIR)/hypershift-operator ./hypershift-operator
 
 .PHONY: control-plane-operator
 control-plane-operator:
+	GOWORK=off
 	$(GO_BUILD_RECIPE) -o $(OUT_DIR)/control-plane-operator ./control-plane-operator
 
 .PHONY: control-plane-pki-operator
@@ -83,6 +85,7 @@ control-plane-pki-operator:
 
 .PHONY: hypershift
 hypershift:
+	GOWORK=off
 	$(GO_BUILD_RECIPE) -o $(OUT_DIR)/hypershift .
 
 .PHONY: product-cli
